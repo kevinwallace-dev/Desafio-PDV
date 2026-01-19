@@ -1,0 +1,29 @@
+services:
+  db:
+    image: postgres:16
+    container_name: pdv_db
+    environment:
+      POSTGRES_USER: pdv
+      POSTGRES_PASSWORD: pdv
+      POSTGRES_DB: pdv
+    ports:
+      - "5432:5432"
+    volumes:
+      - pdv_pgdata:/var/lib/postgresql/data
+      - ./api/sql/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  api:
+    build:
+      context: ./api
+    container_name: pdv_api
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: postgresql://pdv:pdv@db:5432/pdv
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  pdv_pgdata:
