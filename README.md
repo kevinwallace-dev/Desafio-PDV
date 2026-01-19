@@ -30,8 +30,8 @@ Pequeno ecossistema (App + API) que gerencia preferências do usuário (notifica
 ### 1. Clone o repositório
 
 ```bash
-git clone <url-do-repositorio>
-cd pdv-challenge
+git clone https://github.com/kevinwallace-dev/Desafio-PDV
+cd Desafio-PDV
 ```
 
 ---
